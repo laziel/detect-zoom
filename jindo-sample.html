@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cross Browser Zoom and Pixel Ratio Detector</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="http://ajaxui.org/style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	dt { color:#ddd; margin-bottom:10px; display:block;}
+	dd { margin:0; padding:0; margin-bottom:20px; }
+	dd.num { color:#23d1e2; font-weight:bold; font-size:20px; }
+	
+	.footer { line-height:150%; font-size:10px; text-align:left; margin-top:100px;}
+</style>
+</head>
+<body>
+
+<h1>Cross Browser Zoom and Pixel Ratio Detector</h1>
+<span class="subtitle">detect-zoom.js as JindoJS plugin</span>
+
+<dl class="container" style="margin:30px 0;">
+	<dt>Current zoom level:</dt>
+	<dd id="zoomLevel" class="num">1.00</dd>
+
+	<dt>Device Pixel Aspect Ratio:</dt>
+	<dd id="aspectRatio" class="num">1.00</dd>
+</dd>
+
+<div class="footer">
+	detect-zoom.js Maintained by <a href="https://github/tombigel">https://github/tombigel</a><br>
+	Original developer <a href="https://github.com/yonran">https://github.com/yonran</a><br>
+	JindoJS extension by <a href="https://github.com/laziel">https://github.com/laziel</a>
+</div>
+
+<script type="text/javascript" src="jindo.desktop.all.ns.js"></script>
+<script type="text/javascript" src="jindo.detect-zoom.js"></script>
+<script type="text/javascript">
+	var oAgent = new jindo.$Agent();
+	var welZoomLevel = jindo.$Element("zoomLevel");
+	var welAspectRatio = jindo.$Element("aspectRatio");
+	
+	jindo.$Fn(function(){
+		welZoomLevel.html(oAgent.xZoomLevel().toFixed(2));
+		welAspectRatio.html(oAgent.xDevicePixelAspectRatio().toFixed(2));
+	}).attach(window, "resize");
+</script>
+</body>
+</html>
